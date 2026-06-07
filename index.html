@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lance Carlo I. Awit — Portfolio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--cream:#FAF8F4;--dark:#1A1A18;--mid:#4A4A45;--light:#9A9A92;--accent:#C8A96E;--accent-light:#F2EBD9;--line:rgba(26,26,24,0.1)}
+body{background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--dark)}
+.port{max-width:860px;margin:0 auto;padding:0 24px 60px}
+.hero{padding:56px 0 40px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.hero-tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:12px}
+.hero-name{font-family:'DM Serif Display',serif;font-size:clamp(36px,6vw,62px);line-height:1.05;color:var(--dark)}
+.hero-name em{font-style:italic;color:var(--accent)}
+.hero-role{font-size:15px;color:var(--mid);margin-top:14px;font-weight:300;max-width:380px;line-height:1.6}
+.hero-contact{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.hero-contact span{font-size:13px;color:var(--mid)}
+.hero-contact span.dim{color:var(--light);font-size:12px}
+.nav{display:flex;gap:8px;padding:24px 0;flex-wrap:wrap}
+.nav-pill{font-size:12px;padding:6px 14px;border-radius:20px;border:1px solid var(--line);color:var(--mid);cursor:pointer;transition:all .2s;background:transparent;font-family:'DM Sans',sans-serif;letter-spacing:.03em}
+.nav-pill:hover,.nav-pill.active{background:var(--dark);color:var(--cream);border-color:var(--dark)}
+.section{padding:40px 0;border-bottom:1px solid var(--line);display:none}
+.section.visible{display:block}
+.section-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:24px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.about-quote{font-family:'DM Serif Display',serif;font-size:22px;line-height:1.5;color:var(--dark);grid-column:1/-1}
+.about-quote em{color:var(--accent);font-style:italic}
+.about-block h4{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--light);margin-bottom:10px;font-weight:500}
+.about-block p{font-size:14px;color:var(--mid);line-height:1.7;font-weight:300}
+.hobby-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.hobby-pill{font-size:12px;padding:4px 12px;background:var(--accent-light);color:#8B6B2E;border-radius:20px}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.skill-group{background:var(--cream);padding:20px}
+.skill-group h4{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;font-weight:500}
+.skill-list{list-style:none}
+.skill-list li{font-size:13px;color:var(--mid);padding:4px 0;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px;font-weight:300}
+.skill-list li:last-child{border-bottom:none}
+.skill-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.exp-item{display:grid;grid-template-columns:140px 1fr;gap:24px;margin-bottom:32px}
+.exp-period{font-size:11px;color:var(--light);font-weight:500;letter-spacing:.05em}
+.exp-company{font-size:12px;color:var(--accent);margin-top:4px;font-weight:500}
+.exp-badge{display:inline-block;font-size:10px;padding:2px 8px;background:var(--accent-light);color:#8B6B2E;border-radius:20px;margin-top:6px}
+.exp-role{font-family:'DM Serif Display',serif;font-size:18px;color:var(--dark);margin-bottom:10px}
+.exp-points{list-style:none}
+.exp-points li{font-size:13px;color:var(--mid);padding:4px 0;padding-left:14px;position:relative;line-height:1.6;font-weight:300}
+.exp-points li::before{content:'—';position:absolute;left:0;color:var(--accent);font-size:11px;top:5px}
+.certs-list{display:flex;flex-direction:column;gap:12px}
+.cert-item{display:flex;align-items:center;gap:16px;padding:16px 20px;border:1px solid var(--line);border-radius:10px;background:white}
+.cert-icon{width:36px;height:36px;border-radius:8px;background:var(--accent-light);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cert-icon svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:1.5}
+.cert-body{flex:1}
+.cert-title{font-size:13px;font-weight:500;color:var(--dark)}
+.cert-issuer{font-size:12px;color:var(--light);margin-top:2px}
+.cert-tag{font-size:10px;padding:3px 10px;background:var(--accent-light);color:#8B6B2E;border-radius:20px;flex-shrink:0}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.contact-card{padding:20px;border:1px solid var(--line);border-radius:10px;background:white}
+.contact-card h4{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--light);margin-bottom:6px;font-weight:500}
+.contact-card p{font-size:14px;color:var(--dark);font-weight:400}
+.contact-card p.small{font-size:12px;color:var(--mid);margin-top:2px;font-weight:300}
+.project-card{border:1px solid var(--line);border-radius:14px;background:white;overflow:hidden;margin-bottom:20px}
+.project-header{padding:24px 24px 0}
+.project-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.project-name{font-family:'DM Serif Display',serif;font-size:24px;color:var(--dark)}
+.project-name em{color: #e6004f; font-style:italic}
+.project-status{font-size:11px;padding:4px 12px;background:var(--accent-light);color:#e6004f;border-radius:20px;font-weight:500;margin-top:4px;white-space:nowrap}
+.project-tagline{font-size:14px;color:var(--mid);margin-top:8px;line-height:1.6;font-weight:300}
+.project-divider{height:1px;background:var(--line);margin:20px 0 0}
+.slideshow{position:relative;background:#1a1a18;overflow:hidden;user-select:none}
+.slides{display:flex;transition:transform .4s ease}
+.slide{min-width:100%;position:relative}
+.slide img{
+    width:100%;
+    height:auto;
+    display:block;
+}
+.slide-caption{position:absolute;bottom:0;left:0;right:0;padding:10px 16px;background:linear-gradient(transparent,rgba(0,0,0,.72));color:white;font-size:12px;font-weight:500;letter-spacing:.05em}
+.slide-nav{position:absolute;top:calc(50% - 16px);background:rgba(255,255,255,.92);border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:10;line-height:1;padding:0}
+.slide-nav:hover{background:white;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.slide-prev{left:12px}
+.slide-next{right:12px}
+.slide-dots{display:flex;justify-content:center;gap:6px;padding:12px 16px;background:white;flex-wrap:wrap}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--line);cursor:pointer;transition:background .2s;border:none;padding:0;flex-shrink:0}
+.dot.active{background:var(--accent)}
+.project-videos{padding:20px 24px;border-top:1px solid var(--line);background:var(--cream)}
+.video-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:14px}
+.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.video-title{font-size:12px;font-weight:500;color:var(--mid);margin-bottom:8px}
+.video-item video{width:100%;border-radius:8px;border:1px solid var(--line);background:#000;display:block}
+.video-missing{font-size:11px;color:var(--light);padding:24px;text-align:center;background:#f5f5f5;border-radius:8px}
+.project-features{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--line)}
+.feature{background:white;padding:16px 20px}
+.feature-icon{font-size:18px;margin-bottom:8px}
+.feature-name{font-size:12px;font-weight:500;color:var(--dark);margin-bottom:4px}
+.feature-desc{font-size:12px;color:var(--light);line-height:1.5;font-weight:300}
+.project-footer{padding:16px 24px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.tech-pill{font-size:11px;padding:4px 10px;border:1px solid var(--line);border-radius:20px;color:var(--mid);background:var(--cream)}
+.tech-label{font-size:11px;color:var(--light);margin-right:4px;letter-spacing:.05em;text-transform:uppercase}
+.video-item iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  display: block;
+}
+@media(max-width:560px){.about-grid,.contact-grid{grid-template-columns:1fr}.exp-item{grid-template-columns:1fr;gap:6px}.hero{flex-direction:column;align-items:flex-start}.hero-contact{align-items:flex-start}.video-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="port">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">Portfolio — Full-Stack Developer</div>
+      <div class="hero-name">Lance Carlo<br><em>I. Awit</em></div>
+      <div class="hero-role">Full-stack developer with a background in IT support, hardware systems, and healthcare virtual assistance.</div>
+    </div>
+    <div class="hero-contact">
+      <span class="dim">Tayud, Consolacion, Cebu</span>
+      <span>09568633733</span>
+    </div>
+  </div>
+  <div class="nav">
+    <button class="nav-pill active" onclick="show('about',this)">About</button>
+    <button class="nav-pill" onclick="show('projects',this)">Projects</button>
+    <button class="nav-pill" onclick="show('skills',this)">Skills</button>
+    <button class="nav-pill" onclick="show('experience',this)">Experience</button>
+    <button class="nav-pill" onclick="show('certs',this)">Certifications</button>
+    <button class="nav-pill" onclick="show('contact',this)">Contact</button>
+  </div>
+
+  <div class="section visible" id="about">
+    <div class="section-label">About</div>
+    <div class="about-grid">
+      <div class="about-quote">Building reliable systems — from <em>hardware to code,</em> from networks to patient records.</div>
+      <div class="about-block">
+        <h4>Background</h4>
+        <p>Studied Computer Technology with a Programming major and CSS minor at CITE, San Jose, Cebu City. Furthered education at UC Lapu-Lapu and Mandaue. Hands-on experience across IT support, networking, hardware repair, and healthcare virtual assistance.</p>
+      </div>
+      <div class="about-block">
+        <h4>Interests &amp; Hobbies</h4>
+        <div class="hobby-pills">
+          <span class="hobby-pill">Basketball</span>
+          <span class="hobby-pill">Boxing</span>
+          <span class="hobby-pill">Portrait Sketching</span>
+          <span class="hobby-pill">Tattoo Art &amp; Design</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="projects">
+    <div class="section-label">Projects</div>
+
+    <!-- COREX HELPIE -->
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-title-row">
+          <div class="project-name">COREX <em>HELPIE</em></div>
+          <div class="project-status">In Development · Localhost</div>
+        </div>
+        <div class="project-tagline">An all-in-one student support platform designed to make studying easier, more organized, and more effective for both individual and group learning.</div>
+        <div class="project-divider"></div>
+      </div>
+      <div class="slideshow">
+        <div class="slides" id="slides">
+          <div class="slide">
+            <img src="images/home.png" alt="Home — Landing Page">
+            <div class="slide-caption">Home — Landing Page</div>
+          </div>
+          <div class="slide">
+            <img src="images/login.png" alt="Login">
+            <div class="slide-caption">Login</div>
+          </div>
+          <div class="slide">
+            <img src="images/loggingin.png" alt="Logging In...">
+            <div class="slide-caption">Logging In...</div>
+          </div>
+          <div class="slide">
+            <img src="images/signup.png" alt="Sign Up">
+            <div class="slide-caption">Sign Up</div>
+          </div>
+          <div class="slide">
+            <img src="images/dashboard.png" alt="Dashboard">
+            <div class="slide-caption">Dashboard</div>
+          </div>
+          <div class="slide">
+            <img src="images/Notes.PNG" alt="Notes &amp; Vault — Document Storage">
+            <div class="slide-caption">Notes &amp; Vault — Document Storage</div>
+          </div>
+          <div class="slide">
+            <img src="images/Schedule.png" alt="Schedule — Dynamic Planner &amp; Reminders">
+            <div class="slide-caption">Schedule — Dynamic Planner &amp; Reminders</div>
+          </div>
+          <div class="slide">
+            <img src="images/Task.png" alt="Task — Pomodoro Study Timer">
+            <div class="slide-caption">Task — Pomodoro Study Timer</div>
+          </div>
+          <div class="slide">
+            <img src="images/Chatbot.png" alt="ChatBot — AI Research Lab">
+            <div class="slide-caption">ChatBot — AI Research Lab</div>
+          </div>
+          <div class="slide">
+            <img src="images/Profile.png" alt="Profile — My Uploaded Documents">
+            <div class="slide-caption">Profile — My Uploaded Documents</div>
+          </div>
+        </div>
+        <button class="slide-nav slide-prev" onclick="moveSlide(-1)">&#8249;</button>
+        <button class="slide-nav slide-next" onclick="moveSlide(1)">&#8250;</button>
+      </div>
+      <div class="slide-dots" id="dots"></div>
+      <div class="project-features">
+        <div class="feature"><div class="feature-icon">📂</div><div class="feature-name">Note Sharing</div><div class="feature-desc">Upload and share notes. Only uploader can edit or delete.</div></div>
+        <div class="feature"><div class="feature-icon">📅</div><div class="feature-name">Scheduler</div><div class="feature-desc">Dynamic planner with calendar and reminders.</div></div>
+        <div class="feature"><div class="feature-icon">⏱️</div><div class="feature-name">Task Manager</div><div class="feature-desc">Pomodoro timer to manage focus sessions and tasks.</div></div>
+        <div class="feature"><div class="feature-icon">🤖</div><div class="feature-name">AI Chatbot</div><div class="feature-desc">Research partner, mock exam generator, and study guide.</div></div>
+        <div class="feature"><div class="feature-icon">👤</div><div class="feature-name">Profile</div><div class="feature-desc">View and manage all your uploaded documents.</div></div>
+      </div>
+      <div class="project-footer">
+        <span class="tech-label">Built with</span>
+        <span class="tech-pill">PHP</span>
+        <span class="tech-pill">MySQL</span>
+        <span class="tech-pill">HTML</span>
+        <span class="tech-pill">CSS</span>
+        <span class="tech-pill">JavaScript</span>
+      </div>
+    </div>
+
+    <!-- ANIMATION PROJECT -->
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-title-row">
+          <div class="project-name">Animation <em>Demo</em></div>
+          <div class="project-status">Sample Project</div>
+        </div>
+        <div class="project-tagline">A sample animation project showcasing motion design and visual storytelling skills built with Macromedia Flash.</div>
+        <div class="project-divider"></div>
+      </div>
+           <div class="project-videos">
+        <div class="video-label">🎬 Demo Videos</div>
+        <div class="video-grid">
+          <div class="video-item">
+            <div class="video-title">Demo 1</div>
+            <iframe src="https://www.youtube.com/watch?v=oxhFgl0-_pQ" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+          </div>
+          <div class="video-item">
+            <div class="video-title">Demo 2</div>
+            <iframe src="https://youtu.be/GJNu9R3JiH4?si=Wuv52DVdwlqaGTP8" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="project-footer">
+        <span class="tech-label">Built with</span>
+        <span class="tech-pill">Macromedia Flash</span>
+        <span class="tech-pill">ActionScript</span>
+        <span class="tech-pill">Animation</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section" id="skills">
+    <div class="section-label">Technical Skills</div>
+    <div class="skills-grid">
+      <div class="skill-group"><h4>Hardware &amp; Systems</h4><ul class="skill-list"><li><span class="skill-dot"></span>Computer Servicing &amp; Repair</li><li><span class="skill-dot"></span>Laptop &amp; Desktop Maintenance</li><li><span class="skill-dot"></span>Hardware Diagnostics</li><li><span class="skill-dot"></span>PCB Layout &amp; Fabrication</li><li><span class="skill-dot"></span>CCTV Installation</li><li><span class="skill-dot"></span>Printer Setup &amp; Troubleshooting</li></ul></div>
+      <div class="skill-group"><h4>Networking</h4><ul class="skill-list"><li><span class="skill-dot"></span>Network Cabling</li><li><span class="skill-dot"></span>Network Troubleshooting</li><li><span class="skill-dot"></span>Switching &amp; Routing</li><li><span class="skill-dot"></span>Wireless Essentials</li><li><span class="skill-dot"></span>Enterprise Networking</li><li><span class="skill-dot"></span>Network Security Basics</li></ul></div>
+      <div class="skill-group"><h4>Programming &amp; Design</h4><ul class="skill-list"><li><span class="skill-dot"></span>PHP Development</li><li><span class="skill-dot"></span>MySQL / Databases</li><li><span class="skill-dot"></span>Basic Java Programming</li><li><span class="skill-dot"></span>Basic C Language</li><li><span class="skill-dot"></span>Adobe Photoshop</li><li><span class="skill-dot"></span>HTML &amp; CSS</li></ul></div>
+      <div class="skill-group"><h4>Healthcare VA</h4><ul class="skill-list"><li><span class="skill-dot"></span>Prior Authorization</li><li><span class="skill-dot"></span>Medical Records Mgmt</li><li><span class="skill-dot"></span>Appointment Scheduling</li><li><span class="skill-dot"></span>Admin Support</li><li><span class="skill-dot"></span>Patient Confidentiality</li></ul></div>
+    </div>
+  </div>
+
+  <div class="section" id="experience">
+    <div class="section-label">Work Experience</div>
+    <div class="exp-item">
+      <div class="exp-meta"><div class="exp-period">2024 – Present</div><div class="exp-company">Freelance · Remote</div><div class="exp-badge">Part-time</div></div>
+      <div><div class="exp-role">Healthcare Virtual Assistant</div><ul class="exp-points"><li>Assisted in Prior Authorization processing for healthcare services</li><li>Managed and organized medical records and patient documentation</li><li>Handled appointment scheduling and administrative support</li><li>Maintained confidentiality and accuracy of sensitive patient information</li></ul></div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-meta"><div class="exp-period">15 Months</div><div class="exp-company">Gothong Southern Shipping Lines</div><div class="exp-badge">🏅 High Merit · 2nd Honor</div></div>
+      <div><div class="exp-role">Technical Support Intern</div><ul class="exp-points"><li>Provided technical support and troubleshooting services</li><li>Assisted in maintaining computer systems and IT equipment</li><li>Awarded High Merit Intern — 2nd Honor</li></ul></div>
+    </div>
+  </div>
+
+  <div class="section" id="certs">
+    <div class="section-label">Certifications &amp; Achievements</div>
+    <div class="certs-list">
+      <div class="cert-item"><div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><div class="cert-body"><div class="cert-title">CCNA: Enterprise Networking, Security, and Automation</div><div class="cert-issuer">Cisco Networking Academy</div></div><div class="cert-tag">Cisco</div></div>
+      <div class="cert-item"><div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><div class="cert-body"><div class="cert-title">CCNAv7: Switching, Routing, and Wireless Essentials</div><div class="cert-issuer">Cisco Networking Academy</div></div><div class="cert-tag">Cisco</div></div>
+      <div class="cert-item"><div class="cert-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div class="cert-body"><div class="cert-title">Computer Systems Servicing (CSS) NC II</div><div class="cert-issuer">Technical Education and Skills Development Authority</div></div><div class="cert-tag">TESDA</div></div>
+    </div>
+  </div>
+
+  <div class="section" id="contact">
+    <div class="section-label">Contact &amp; References</div>
+    <div class="contact-grid">
+      <div class="contact-card"><h4>Location</h4><p>Tayud, Consolacion, Cebu</p></div>
+      <div class="contact-card"><h4>Phone</h4><p>09568633733</p></div>
+      <div class="contact-card"><h4>Reference</h4><p>John Alester I. Awit</p><p class="small">Virtual Assistant</p></div>
+      <div class="contact-card"><h4>Reference</h4><p>Engr. Mariano FX A. Hamoy</p><p class="small">CITE QMR — CITE Technical Institute, Inc.</p></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function show(id,btn){document.querySelectorAll('.section').forEach(s=>s.classList.remove('visible'));document.querySelectorAll('.nav-pill').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('visible');btn.classList.add('active')}
+let cur=0;const total=10;
+const dotsEl=document.getElementById('dots');
+for(let i=0;i<total;i++){const d=document.createElement('button');d.className='dot'+(i===0?' active':'');d.onclick=(()=>{const n=i;return()=>goTo(n)})();dotsEl.appendChild(d)}
+function goTo(n){cur=n;document.getElementById('slides').style.transform='translateX(-'+n*100+'%)';document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===n))}
+function moveSlide(dir){goTo((cur+dir+total)%total)}
+</script>
+</body>
+</html>
